@@ -1,0 +1,7 @@
+[
+  {"tenant_id": "t-acme", "name": "Acme Retail", "tier": "pro", "region": "us"},
+  {"tenant_id": "t-globex", "name": "Globex Bank", "tier": "enterprise", "region": "eu"},
+  {"tenant_id": "t-initech", "name": "Initech", "tier": "free", "region": "us"},
+  {"tenant_id": "t-bigco", "name": "BigCo Media", "tier": "enterprise", "region": "us"},
+  {"tenant_id": "t-hooli", "name": "Hooli Labs", "tier": "pro", "region": "us"}
+]

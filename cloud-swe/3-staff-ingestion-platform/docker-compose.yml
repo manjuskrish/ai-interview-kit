@@ -1,0 +1,13 @@
+# Optional: run AWS services locally with LocalStack.
+#   docker compose up -d
+# Then point your SDK at http://localhost:4566 with dummy credentials (test / test), region us-east-1.
+services:
+  localstack:
+    image: localstack/localstack:3
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,sqs,sns,dynamodb,kinesis,lambda,iam,cloudwatch
+      - DEBUG=0
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"

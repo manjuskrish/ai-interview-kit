@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Order intake service (API -> SQS -> consumer -> DynamoDB)
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 30
+    Environment:
+      Variables:
+        ORDERS_TABLE:
+          Ref: OrdersTable
+        ORDERS_QUEUE_URL:
+          Ref: OrdersQueue
+        DLQ_URL:
+          Ref: OrdersDLQ
+
+Resources:
+  OrdersDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: orders-dlq
+      MessageRetentionPeriod: 1209600
+
+  OrdersQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: orders
+      VisibilityTimeout: 60
+      RedrivePolicy:
+        deadLetterTargetArn:
+          "Fn::GetAtt": [OrdersDLQ, Arn]
+        maxReceiveCount: 5
+
+  OrdersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: order_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: order_id
+          KeyType: HASH
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: orders.api.create_order
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: "sqs:*"
+              Resource: "*"
+      Events:
+        CreateOrder:
+          Type: Api
+          Properties:
+            Path: /orders
+            Method: post
+
+  ConsumerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: orders.consumer.handle_batch
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - "dynamodb:*"
+                - "sqs:*"
+              Resource: "*"
+      Events:
+        OrdersQueueEvent:
+          Type: SQS
+          Properties:
+            Queue:
+              "Fn::GetAtt": [OrdersQueue, Arn]
+            BatchSize: 10
+            FunctionResponseTypes:
+              - ReportBatchItemFailures

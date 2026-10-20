@@ -1,0 +1,12 @@
+{
+  "Records": [
+    {
+      "eventSource": "aws:s3",
+      "eventName": "ObjectCreated:Put",
+      "s3": {
+        "bucket": { "name": "acme-prod-reports" },
+        "object": { "key": "reports/acme/2024-03-01+summary.csv", "size": 1024 }
+      }
+    }
+  ]
+}

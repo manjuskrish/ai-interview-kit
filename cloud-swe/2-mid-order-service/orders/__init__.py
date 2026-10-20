@@ -1,0 +1,1 @@
+"""Order intake service."""

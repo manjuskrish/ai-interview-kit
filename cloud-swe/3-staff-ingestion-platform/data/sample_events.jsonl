@@ -1,0 +1,12 @@
+{"tenant_id": "t-acme", "event_id": "e-1001", "type": "page_view", "ts": "2024-05-01T10:00:00Z", "user_id": "u-17", "props": {"path": "/pricing"}}
+{"tenant_id": "t-acme", "event_id": "e-1002", "type": "purchase", "ts": "2024-05-01T10:00:04Z", "user_id": "u-17", "props": {"amount": 59.0, "currency": "USD"}}
+{"tenant_id": "t-acme", "event_id": "e-1002", "type": "purchase", "ts": "2024-05-01T10:00:04Z", "user_id": "u-17", "props": {"amount": 59.0, "currency": "USD"}}
+{"tenant_id": "t-globex", "event_id": "g-77", "type": "login", "ts": "2024-05-01T09:59:58Z", "user_id": "u-3", "props": {"method": "sso", "email": "pat@globex.example"}}
+{"tenant_id": "t-initech", "event_id": "i-5", "type": "page_view", "ts": "2024-05-01T10:01:10Z", "user_id": "u-9", "props": {"path": "/"}}
+{"tenant_id": "t-bigco", "event_id": "b-9001", "type": "video_play", "ts": "2024-05-01T10:02:00Z", "user_id": "u-4400", "props": {"video_id": "v-88", "position_s": 12}}
+{"tenant_id": "t-bigco", "event_id": "b-9002", "type": "video_play", "ts": "2024-05-01T10:02:00Z", "user_id": "u-4401", "props": {"video_id": "v-88", "position_s": 0}}
+{"tenant_id": "t-hooli", "event_id": "h-1", "type": "feature_used", "ts": "2024-04-30T23:59:59Z", "user_id": "u-2", "props": {"feature": "export"}}
+{"tenant_id": "t-hooli", "event_id": "h-2", "type": "feature_used", "ts": "2030-01-01T00:00:00Z", "user_id": "u-2", "props": {"feature": "export"}}
+{"tenant_id": "t-unknown", "event_id": "x-1", "type": "page_view", "ts": "2024-05-01T10:03:00Z", "user_id": "u-1", "props": {}}
+{"tenant_id": "t-acme", "event_id": "e-1003", "type": "", "ts": "not-a-date", "user_id": "u-18", "props": {"note": "malformed on purpose"}}
+{"tenant_id": "t-acme", "event_id": "e-1004", "type": "custom", "ts": "2024-05-01T10:05:00Z", "user_id": "u-19", "props": {"blob": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}}
